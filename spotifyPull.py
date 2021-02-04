@@ -23,18 +23,25 @@ def getTrackInfo():
     artist_ids = ['1t20wYnTiAT0Bs7H1hv9Wt','5JZ7CnR6gTvEMKX4g70Amv','5IH6FPUwQTxPSXurCrcIov']
     id_num = artist_ids[random.randint(0,2)]
     
-    BASE_URL = 'https://api.spotify.com/v1/artists/'+ id_num +'/top-tracks'
+    BASE_URL = 'https://api.spotify.com/v1/artists/'+ id_num +'/top-tracks?market=US'
     
     headers = {
-        'Authorization': 'Bearer ' + access_token,
+        'Authorization': 'Bearer ' + access_token
     }
     
     response = requests.get(BASE_URL, headers=headers)
     data = response.json()
-    refined_data = [data['tracks']['name'], data['tracks']['artists']['name'], data['tracks']['images'], data['tracks']['previw_url']]
+    full_data = []
+    artist_names = []
+    for i in data['tracks']:
+        for j in i['artists']:
+            if j['name'] not in artist_names:
+                artist_names.append(j['name'])
+        refined_data = [i['name'], artist_names, i['album']['images'][0]['url'], i['preview_url']]
+        full_data.append(refined_data)
     return render_template(
         "index.html",
-        track_data=refined_data
+        track_data=full_data
     )
     
 app.run(
