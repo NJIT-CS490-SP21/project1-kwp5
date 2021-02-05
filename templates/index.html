@@ -1,12 +1,22 @@
 <html>
     <head>
-        <link rel="stylesheet" href={{ url_for('static', filename='style.css') }} />
+        <link rel="stylesheet" href={{ url_for('static', filename='proj1Style.css') }} />
     </head>
     <body>
-        <h1>Track:</h1>
-        <h3>Title:</h3>
-        <ul>
-            <li>{{track_data[0][0]}}</li>
+        <h1><u>Top Tracks</u>:</h1>
+        <h3><u>Titles</u>:</h3>
+        <ul>{% for i in range(0, url_len) %}
+                <li><b>{{track_data[0][i]}}</b></li>
+                <ul>
+                    <li><u>Image</u>: <img src={{track_data[2][i]}}></img></li>
+                    <li><u>Artists</u>:</li>
+                    <ul>{% for j in track_data[1][i] %}
+                            <li>{{j}}</li>
+                        {% endfor %}
+                    </ul>
+                    <li><u>Preview</u>: {{track_data[3][i]}}</li>
+                </ul>
+            {% endfor %}
         </ul>
     </body>
 </html>

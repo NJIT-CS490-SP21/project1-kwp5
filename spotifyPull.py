@@ -32,16 +32,24 @@ def getTrackInfo():
     response = requests.get(BASE_URL, headers=headers)
     data = response.json()
     full_data = []
+    track_names = []
     artist_names = []
+    track_images = []
+    preview_urls = []
     for i in data['tracks']:
+        temp_list = []
         for j in i['artists']:
-            if j['name'] not in artist_names:
-                artist_names.append(j['name'])
-        refined_data = [i['name'], artist_names, i['album']['images'][0]['url'], i['preview_url']]
-        full_data.append(refined_data)
+            temp_list.append(j['name'])
+        artist_names.append(temp_list)
+        track_names.append(i['name'])
+        track_images.append(i['album']['images'][0]['url'])
+        preview_urls.append(i['preview_url'])
+    full_data = [track_names,artist_names,track_images,preview_urls]
+    length = len(full_data[3])
     return render_template(
         "index.html",
-        track_data=full_data
+        track_data=full_data,
+        url_len=length
     )
     
 app.run(
