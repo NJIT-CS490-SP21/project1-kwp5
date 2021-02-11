@@ -9,9 +9,9 @@ app = Flask(__name__)
 def getTrackInfo():
     load_dotenv(find_dotenv())
 
-    AUTH_URL = 'https://accounts.spotify.com/api/token'
+    SPOT_AUTH_URL = 'https://accounts.spotify.com/api/token'
     
-    auth_response = requests.post(AUTH_URL, {
+    auth_response = requests.post(SPOT_AUTH_URL, {
         'grant_type': 'client_credentials',
         'client_id': os.getenv('CLIENT_ID'),
         'client_secret': os.getenv('CLIENT_SECRET'),
@@ -46,10 +46,24 @@ def getTrackInfo():
         preview_urls.append(i['preview_url'])
     full_data = [track_names,artist_names,track_images,preview_urls]
     length = len(full_data[3])
+    
+    BASE_URL = 'https://api.genius.com/search?q='
+    
+    headers = {
+        'Authorization': 'Bearer ' + os.getenv('G_ACCESS_TOKEN')
+    }
+    lyric_urls = []
+    for i in track_names:
+        params = {'q': i + " " + artist_names[0][0]}
+        response = requests.get(BASE_URL, params=params, headers=headers)
+        data = response.json()
+        lyric_urls.append(data['response']['hits'][0]['result']['url'])
+        
     return render_template(
         "index.html",
         track_data=full_data,
-        url_len=length
+        url_len=length,
+        lyrics=lyric_urls,
     )
     
 app.run(
