@@ -1,12 +1,12 @@
 <html>
     <head>
-        <link rel="stylesheet" href={{ url_for('static', filename='proj1Style.css') }}>
+        <link rel="stylesheet" href={{ url_for('static', filename='style.css') }}>
     </head>
     <body>
         <h1 style="text-align:center;"><u>Search For A Spotify Artist Below</u></h1><br>
         <form method="POST">
-            <input type="text" name="artist_search" class="inputText"><br>
-            <input type="submit" value="Search" class="inputButton">
+            <input class="inputText" type="text" name="artist_search"><br>
+            <input class="inputButton" type="submit" value="Search">
         </form><br>
         <p class="note">
             **Page may take a few seconds to load<br>
