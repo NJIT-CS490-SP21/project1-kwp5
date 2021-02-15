@@ -1,11 +1,15 @@
 import requests
 import os, random
 from dotenv import load_dotenv, find_dotenv
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, request
 
 app = Flask(__name__)
 
 @app.route('/')
+def main_page():
+    return render_template("homepage.html")
+
+@app.route('/', methods=["POST"])
 def getTrackInfo():
     load_dotenv(find_dotenv())
 
@@ -20,8 +24,19 @@ def getTrackInfo():
     auth_response_data = auth_response.json()
     access_token = auth_response_data['access_token']
     
-    artist_ids = ['1t20wYnTiAT0Bs7H1hv9Wt','5JZ7CnR6gTvEMKX4g70Amv','5IH6FPUwQTxPSXurCrcIov']
-    id_num = artist_ids[random.randint(0,2)]
+    BASE_URL = 'https://api.spotify.com/v1/search?q=' + request.form['artist_search'] + '&type=artist&limit=1'
+    
+    headers = {
+        'Authorization': 'Bearer ' + access_token
+    }
+    
+    response = requests.get(BASE_URL, headers=headers)
+    data = response.json()
+    try:
+        id_num = data['artists']['items'][0]['id']
+    except:
+        print("Artist does not exist on Spotify")
+        return redirect(url_for('main_page'))
     
     BASE_URL = 'https://api.spotify.com/v1/artists/'+ id_num +'/top-tracks?market=US'
     

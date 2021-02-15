@@ -1,11 +1,15 @@
 body {
-    background-color: black;
-    font-family: "Proxima Nova", serif;
+     background: url(https://cdn.statically.io/img/www.pixelstalk.net/wp-content/uploads/2016/06/Gif-Wallpapers-HD-Free-Download.gif) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    font-family: "Trebuchet MS", sans-serif;
     font-size: 20px;
 }
 
 h1 {
-    color: green;
+    color: #1DB954;
+    text-align: center;
 }
 
 ul {
@@ -14,28 +18,62 @@ ul {
 
 li {
     text-align: center;
+    color: #1DB954;
 }
 
-u {
-    color: green;
+a {
+  color: #1DB954
 }
 
 img {
-    max-width:20%;
+    max-width:30%;
     height:auto;
     border-radius: 15px;
 }
 
-.changeBullet::before {
-  content: "»";
-  padding-right: 8px;
-  color: green;
+.inputText {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -20px;
+    margin-left: -85px;
+    background-color: #1DB954;
+    border: none;
+    padding: 6px;
 }
 
-.color {
-    color: green;
+.inputButton {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: 10px;
+    margin-left: -30px;
+    background-color: #1DB954;
+    border: none;
+    border-radius: 8px;
+    padding: 8px
+}
+
+.changeBullet {
+  padding-right: 55px;
+}
+
+.changeBullet::before {
+  content: "»";
+  color: #1DB954;
 }
 
 .fontSize {
     font-size: 30px;
+    color: #1DB954;
+}
+
+.note {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: 110px;
+    margin-left: -100px;
+    color: #1DB954;
+    font-size: 13px;
 }

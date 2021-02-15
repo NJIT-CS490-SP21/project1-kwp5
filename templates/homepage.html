@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <link rel="stylesheet" href={{ url_for('static', filename='proj1Style.css') }}>
+    </head>
+    <body>
+        <h1 style="text-align:center;"><u>Search For A Spotify Artist Below</u></h1><br>
+        <form method="POST">
+            <input type="text" name="artist_search" class="inputText"><br>
+            <input type="submit" value="Search" class="inputButton">
+        </form><br>
+        <p class="note">
+            **Page may take a few seconds to load<br>
+            and if the artist does not exist on 
+            Spotify the<br> page will not change
+        </p>
+    </body>
+</html>

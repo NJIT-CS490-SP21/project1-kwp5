@@ -1,13 +1,12 @@
 <html>
     <head>
         <link rel="stylesheet" href={{ url_for('static', filename='proj1Style.css') }}>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Proxima Nova">
     </head>
     <body>
-        <h1 class="center"><u>Top Ten Tracks Made By {{track_data[1][0][0]}}</u></h1>
+        <h1 style="text-align:center;"><u>Top Ten Tracks Made By {{track_data[1][0][0]}}</u></h1>
         <ul>{% for i in range(0, url_len) %}
                 <li><img src={{track_data[2][i]}}></img></li>
-                </li>
+                <li>
                     <audio controls>
                       <source src={{track_data[3][i]}} type="audio/mpeg">
                     </audio>
@@ -16,10 +15,11 @@
                 <li><u>Feat</u>:</li>
                 <ul>
                     {% for j in track_data[1][i] %}
-                        <li class="changeBullet">{{j}}</li>
+                        <li class="changeBullet" style="padding-right:50px;">{{j}}</li>
                     {% endfor %}
                 </ul>
                 <li><a href={{lyrics[i]}}><u>Lyrics By Genius</u></a></li>
+                <li>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</li>
             {% endfor %}
         </ul>
     </body>
