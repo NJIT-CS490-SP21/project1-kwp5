@@ -1,4 +1,6 @@
 # Spotify Artist and Track Search with Genius Support
+#### Made By: Kyle Partyka
+#### Github: https://github.com/kwp5
 ### <ins>Technologies Used</ins>: Python, HTML5, CSS, Spotify API, Genius API, Heroku (For app deployment) <br>
 ### <ins>Libraries Used</ins>: Flask, Dotenv, Requests, os <br>
 ### <ins>How To Run</ins>:
